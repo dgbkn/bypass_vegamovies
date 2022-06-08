@@ -1,4 +1,10 @@
-const io = require('socket.io')();
+const express = require('express');
+const app = express();
+const http = require('http');
+const server = http.createServer(app);
+const { Server } = require("socket.io");
+const io = new Server(server);
+
 
 const puppeteer = require('puppeteer');
 
@@ -24,7 +30,7 @@ async function closeBrowser(browser) {
 async function bypassLink(link) {
 
 // main linne
-const { browser, page } = await startBrowser(true);
+const { browser, page } = await startBrowser(false);
 
 page.setViewport({ width: 1366, height: 768 });
 await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36');
@@ -74,27 +80,42 @@ return content;
 
 
 
-// io.on('connection', client => {  });
+// const io = new Server();
 
-io.on('connect', (Socket) => {
 
-  Socket.on('bypassVega', (link) => {
+io.on("connection", (socket) => {
+
+  socket.on('bypassVega', (link) => {
     void async function() {
       var bypassEd = await bypassLink(link);
-      Socket.emit('html', bypassEd )
+      socket.emit('html', bypassEd )
       ;
 
     }().catch(
       err => 
-      Socket.emit('error', err.message )
+      socket.emit('error', err.message )
       );
-  })
+  });
 
-})
+    console.log('a user connected');
+
+});
+
+app.get('/', (req, res) => {
+  res.sendFile(__dirname + '/index.html');
+});
 
 
+// io.on('connect', (socket) => {
+//   socket.on('chat message', (msg) => {
+//     console.log('message: ' + msg);
+//   });
+//   console.log('a user connected');
+// });
 
-io.listen(process.env.PORT || 3000 );
+// io.listen(process.env.PORT || 3000);
+
+
 
 
 // const wss = new WebSocketServer({ port: process.env.PORT || 3000 });
@@ -119,3 +140,8 @@ io.listen(process.env.PORT || 3000 );
 //   ws.send('Successfully Connected');
 
 // });
+
+
+server.listen(process.env.PORT || 3000, () => {
+  console.log('listening on *:' + process.env.PORT || 3000);
+});
