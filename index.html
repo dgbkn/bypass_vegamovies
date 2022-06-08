@@ -40,9 +40,17 @@
         socket.emit('bypassVega', input.value);
         socket.on("html", (html) => {
             console.log(html);
+          addToList(html);
         });
         input.value = '';
       }
     });
+  
+  function addToList(text) {
+  var ul = document.getElementById("messages");
+  var li = document.createElement("li");
+  li.appendChild(document.createTextNode(text));
+  ul.appendChild(li);
+}
   </script>
 </html>
