@@ -1,4 +1,4 @@
-import { WebSocketServer } from 'ws';
+const io = require('socket.io')();
 
 const puppeteer = require('puppeteer');
 
@@ -74,25 +74,48 @@ return content;
 
 
 
-const wss = new WebSocketServer({ port: process.env.PORT || 3000 });
+// io.on('connection', client => {  });
 
-wss.on('connection', function connection(ws) {
+io.on('connect', (Socket) => {
 
-  ws.on('bypassVega',function message(data) {
-    console.log('received: %s', data);
+  Socket.on('bypassVega', (link) => {
+    void async function() {
+      var bypassEd = await bypassLink(link);
+      Socket.emit('html', bypassEd )
+      ;
 
-      void async function() {
-        var bypassEd = await bypassLink(link);
-        socket.send(JSON.stringify({ htmlData: bypassEd}));
-        
-      }().catch(
-        err => 
-        socket.send(JSON.stringify({error: err.message }))
-        );
+    }().catch(
+      err => 
+      Socket.emit('error', err.message )
+      );
+  })
+
+})
 
 
-  });
 
-  ws.send('Successfully Connected');
+io.listen(process.env.PORT || 3000 );
 
-});
+
+// const wss = new WebSocketServer({ port: process.env.PORT || 3000 });
+
+// wss.on('connection', function connection(ws) {
+
+//   ws.on('bypassVega',function message(data) {
+//     console.log('received: %s', data);
+
+//       void async function() {
+//         var bypassEd = await bypassLink(link);
+//         socket.send(JSON.stringify({ htmlData: bypassEd}));
+
+//       }().catch(
+//         err => 
+//         socket.send(JSON.stringify({error: err.message }))
+//         );
+
+
+//   });
+
+//   ws.send('Successfully Connected');
+
+// });
