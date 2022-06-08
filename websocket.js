@@ -68,7 +68,9 @@ await page.waitFor(4000);
 const pages = await browser.pages()
 
 
-var content = await pages[pages.length - 1].content();
+// var content = await pages[pages.length - 1].content();
+var content = await pages[pages.length - 1].url();
+  
 await browser.close();
 return content;
 
