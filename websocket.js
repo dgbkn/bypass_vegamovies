@@ -30,7 +30,7 @@ async function closeBrowser(browser) {
 async function bypassLink(link) {
 
 // main linne
-const { browser, page } = await startBrowser(false);
+const { browser, page } = await startBrowser(true);
 
 page.setViewport({ width: 1366, height: 768 });
 await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36');
