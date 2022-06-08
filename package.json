@@ -2,15 +2,16 @@
   "name": "puppet",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "websocket.js",
   "scripts": {
-    "start": "node bypass.js"
+    "start": "node websocket.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.15.3",
-    "puppeteer": "^13.4.1"
+    "puppeteer": "^13.4.1",
+    "ws": "^8.7.0"
   }
 }
