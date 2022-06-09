@@ -4,6 +4,9 @@ const http = require('http');
 const server = http.createServer(app);
 const { Server } = require("socket.io");
 const io = new Server(server);
+var cors = require("cors");
+
+app.use(cors());
 
 
 const puppeteer = require('puppeteer');
