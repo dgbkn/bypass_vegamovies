@@ -64,15 +64,30 @@ await Promise.all([
 //await page.waitFor(9000);
 //await page.click('#showlink');
 
-await page.waitFor(3000);
-await page.evaluate(() => { document.querySelector('#showlink').style.display = 'yes'; });
-await page.click('#showlink');
+//await page.waitFor(3000);
+//await page.evaluate(() => { document.querySelector('#showlink').style.display = 'yes'; });
+//await page.click('#showlink');
 
 // var bypassedPage = await browser.targets()[browser.targets().length-1].page();
 // await bypassedPage.waitFor(4000);
 // var content = await bypassedPage.content();
 
-await page.waitFor(2000);
+
+
+
+
+
+await page.waitForSelector('#generater', {
+  visible: true,
+});
+await page.click('#generater');
+
+await page.waitForSelector('#showlink', {
+  visible: true,
+});
+await page.click('#showlink');
+
+await page.waitFor(3500);
 
 
 const pages = await browser.pages()
