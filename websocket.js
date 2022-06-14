@@ -56,20 +56,22 @@ await Promise.all([
 
 // await page.click('#trials-table > tbody > tr > td:nth-child(5) > form > input.btn.btn-warning.js-show-upgrade-popup',{ clickCount: 2, delay: 1000  });
 
-await page.waitForSelector("#generater");
-await page.waitFor(7000);
-await page.click('#generater');
+//await page.waitForSelector("#generater");
+//await page.waitFor(7000);
+//await page.click('#generater');
 
-await page.waitForSelector("#showlink");
-await page.waitFor(9000);
+//await page.waitForSelector("#showlink");
+//await page.waitFor(9000);
+//await page.click('#showlink');
+
+await page.evaluate(() => { document.querySelector('#showlink').style.display = 'yes'; });
 await page.click('#showlink');
-
 
 // var bypassedPage = await browser.targets()[browser.targets().length-1].page();
 // await bypassedPage.waitFor(4000);
 // var content = await bypassedPage.content();
 
-await page.waitFor(4000);
+await page.waitFor(2000);
 
 
 const pages = await browser.pages()
