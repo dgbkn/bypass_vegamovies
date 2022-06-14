@@ -87,10 +87,10 @@ await page.click('#showlink');
 //});
 //await page.click('#showlink');
 
-await page.waitFor(3500);
+await page.waitFor(4000);
 
 
-const pages = await browser.pages()
+const pages = await browser.pages();
 
 
 // var content = await pages[pages.length - 1].content();
