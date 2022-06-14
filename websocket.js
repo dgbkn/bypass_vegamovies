@@ -64,6 +64,7 @@ await Promise.all([
 //await page.waitFor(9000);
 //await page.click('#showlink');
 
+await page.waitFor(3000);
 await page.evaluate(() => { document.querySelector('#showlink').style.display = 'yes'; });
 await page.click('#showlink');
 
