@@ -56,13 +56,13 @@ await Promise.all([
 
 // await page.click('#trials-table > tbody > tr > td:nth-child(5) > form > input.btn.btn-warning.js-show-upgrade-popup',{ clickCount: 2, delay: 1000  });
 
-//await page.waitForSelector("#generater");
-//await page.waitFor(7000);
-//await page.click('#generater');
+await page.waitForSelector("#generater");
+await page.waitFor(7000);
+await page.click('#generater');
 
-//await page.waitForSelector("#showlink");
-//await page.waitFor(9000);
-//await page.click('#showlink');
+await page.waitForSelector("#showlink");
+await page.waitFor(9000);
+await page.click('#showlink');
 
 //await page.waitFor(3000);
 //await page.evaluate(() => { document.querySelector('#showlink').style.display = 'yes'; });
@@ -77,17 +77,17 @@ await Promise.all([
 
 
 
-await page.waitForSelector('#generater', {
-  visible: true,
-});
-await page.click('#generater');
+//await page.waitForSelector('#generater', {
+//  visible: true,
+//});
+//await page.click('#generater');
 
-await page.waitForSelector('#showlink', {
-  visible: true,
-});
-await page.click('#showlink');
+//await page.waitForSelector('#showlink', {
+//  visible: true,
+//});
+//await page.click('#showlink');
 
-await page.waitFor(3500);
+//await page.waitFor(3500);
 
 
 const pages = await browser.pages()
